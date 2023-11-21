@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="layout.css">
+    <link  rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"  integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"  crossorigin="anonymous">
+    <script src="ordenando.js"></script>
+    <title>Ordenando</title>
+</head>
+<header>
+
+</header>
+<body>
+    <main>
+        <h1>Ordenando Valores</h1>
+
+        <div class="entrada">
+            <input type="number" id="valor">            
+        </div>   
+        <div class="botton">
+            <button onclick="add()"> Adicionar</button>
+        </div>
+        <hr>  
+        <div class="opcoesordenando">
+            <select id="algoritmo">
+                <option value="bubble">Bubble Sort</option>
+                <option value="selection">Selection Sort</option>
+                <option value="quick">Quick Sort</option>
+            </select>
+        </div>
+        
+        <button onclick="ordenar()">Ordenar</button>    
+
+        <button onclick="misturar()">Misturar</button>
+
+        <ul id="valores"></ul>
+        <hr>
+        <script>             
+            function ordenar() {
+                const algoritmoSelecionado = document.getElementById("algoritmo").value;
+                if (algoritmoSelecionado === "bubble") {
+                } else if (algoritmoSelecionado === "selection") {                   
+                } else if (algoritmoSelecionado === "quick") {                   
+                }   
+                
+                const valoresLista = document.getElementById("valores");
+                valoresLista.innerHTML = ""; 
+                vetor.forEach(valor => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = valor;
+                    valoresLista.appendChild(listItem);
+                });
+            }
+    
+
+            
+function add() {
+    const inputField = document.getElementById("valor");
+    const valoresLista = document.getElementById("valores");
+
+    const node = document.createElement("li");
+
+    const textNode = document.createTextNode(inputField.value);
+    
+    node.appendChild(textNode);
+
+    valoresLista.appendChild(node);
+}
+
+function ordenar() {    
+    const valoresLista = document.getElementById("valores");
+    const algoritmoSelecao = document.getElementById("algoritmo").selectedIndex;
+r
+    const valores = Array.from(valoresLista.children).map(item => parseInt(item.innerHTML));
+
+    let valoresOrdenados;
+    if (algoritmoSelecao === 0) {        
+        valoresOrdenados = bubble_sort(valores);
+    } else if (algoritmoSelecao === 1) {     
+        valoresOrdenados = selection_sort(valores);
+    } else if (algoritmoSelecao === 2) {
+        valoresOrdenados = quick_sort(valores);
+    }
+
+    valoresLista.innerHTML = valoresOrdenados.map(valor => `<li>${valor}</li>`).reduce((acc, item) => acc + item, '');
+}
+
+
+function misturar() {
+    
+    const valoresLista = document.getElementById("valores");
+    
+    const valores = Array.from(valoresLista.children).map(item => parseInt(item.innerHTML));
+    shuffle(valores);
+
+    valoresLista.innerHTML = valores.map(valor => `<li>${valor}</li>`).reduce((acc, item) => acc + item, '');
+}
+        </script>
+
+    </main>
+    
+</body>
+</html>
